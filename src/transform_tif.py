@@ -105,16 +105,11 @@ def main():
         print('Uploading trimmed and compressed tif to s3: %s' % new_tif)
         with open(new_tif, 'r') as tos3:
             client.put_object(
-                Bucket=args.s3bucket, Key='trimmed/' + os.path.split(new_tif)[1],
+                Bucket=args.s3bucket,
+                Key='trimmed/' + os.path.split(new_tif)[1],
                 Body=tos3)
     else:
-        copy_tif(
-            Bucket=args.s3bucket,
-            Key='trimmed/' + fname,
-            CopySource={
-                'Bucket': args.s3bucket,
-                'Key': args.s3key
-            })
+        copy_tif(args.s3bucket, args.s3key, 'trimmed/' + fname)
 
 
 if __name__ == '__main__':
