@@ -50,7 +50,7 @@ def copy_tif(bucket, old_key, new_key):
     print('Copying tif, since nothing was wrong')
     client = boto3.client('s3')
     client.copy(
-        CopySource='{}/{}'.format(bucket, old_key),
+        CopySource={'Bucket': bucket, 'Key': old_key},
         Bucket=bucket,
         Key=new_key)
 
