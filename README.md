@@ -1,8 +1,12 @@
 Tif Clipper
 ===========
 
-_tl;dr_: `$ docker pull quay.io/jisantuc/tifclipper`,
-`$ docker run --rm -v $HOME/.aws:/root/.aws src/transform_tif.py bucket key`
+_tl;dr_:
+
+```bash
+$ docker pull jisantuc/tifclipper
+$ docker run --rm -v $HOME/.aws:/root/.aws src/transform_tif.py bucket key
+```
 
 This repository contains a Dockerfile and a basic script for trimming aerial
 imagery tifs to the "good parts". The script solves an extremely specific problem
