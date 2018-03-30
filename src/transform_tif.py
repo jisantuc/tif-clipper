@@ -50,7 +50,9 @@ def copy_tif(bucket, old_key, new_key):
     print('Copying tif, since nothing was wrong')
     client = boto3.client('s3')
     client.copy_object(
-        CopySource='s3://{}'.format(old_key), Bucket=bucket, Key=new_key)
+        CopySource='s3://{}/{}'.format(bucket, old_key),
+        Bucket=bucket,
+        Key=new_key)
 
 
 def trim_and_compress(path_to_tif, until, width):
