@@ -103,8 +103,10 @@ def main():
         new_tif = trim_and_compress(local_path,
                                     translate_result['failing_row'], width)
         print('Uploading trimmed and compressed tif to s3: %s' % new_tif)
-        client.put_object(
-            Bucket=args.s3bucket, Key='trimmed' + os.path.split(new_tif)[1])
+        with open(new_tif, 'r') as tos3:
+            client.put_object(
+                Bucket=args.s3bucket, Key='trimmed' + os.path.split(new_tif)[1],
+                Body=tos3)
     else:
         copy_tif(
             Bucket=args.s3bucket,
